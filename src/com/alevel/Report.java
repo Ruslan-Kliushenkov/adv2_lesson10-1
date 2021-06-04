@@ -64,6 +64,16 @@ public class Report extends AbstractReport {
     }
 
     @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (getClass() != o.getClass()) return false;
+        Report report = (Report) o;
+        if (!this.header.equals(report.header)) return false;
+        if (!this.footer.equals(report.footer)) return false;
+        return this.body.equals(report.body);
+    }
+
+    @Override
     public String toString() {
         return "Report{" +
                 "header='" + header + '\'' +
