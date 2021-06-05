@@ -3,13 +3,11 @@ package com.alevel;
 public class Report extends AbstractReport {
 
     private String body;
-    private String header = getHeader();
-    private String footer = getFooter();
 
     private Report(String header, String body, String footer) {
-        this.header = header;
+        setHeader(header);
         this.body = body;
-        this.footer = footer;
+        setFooter(footer);
     }
 
     public static ReportBuilder builder() {
@@ -17,7 +15,7 @@ public class Report extends AbstractReport {
     }
 
     public ReportBuilder toBuilder() {
-        return new ReportBuilder(this.header, this.body, this.footer);
+        return new ReportBuilder(this.getHeader(), this.body, this.getFooter());
     }
 
     public static class ReportBuilder {
@@ -68,17 +66,26 @@ public class Report extends AbstractReport {
         if (this == o) return true;
         if (getClass() != o.getClass()) return false;
         Report report = (Report) o;
-        if (!this.header.equals(report.header)) return false;
-        if (!this.footer.equals(report.footer)) return false;
+        if (!this.getHeader().equals(report.getHeader())) return false;
+        if (!this.getFooter().equals(report.getFooter())) return false;
         return this.body.equals(report.body);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getHeader() == null ? 0 : 31 * getHeader().hashCode();
+        result = getHeader() == null ? 0 : 31 * result * getHeader().hashCode();
+        result = getHeader() == null ? 0 : 31 * result * getHeader().hashCode();
+
+        return result;
     }
 
     @Override
     public String toString() {
         return "Report{" +
-                "header='" + header + '\'' +
+                "header='" + getHeader() + '\'' +
                 ", body='" + body + '\'' +
-                ", footer='" + footer + '\'' +
+                ", footer='" + getFooter() + '\'' +
                 '}';
     }
 }

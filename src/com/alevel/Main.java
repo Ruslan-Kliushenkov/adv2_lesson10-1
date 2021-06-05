@@ -7,7 +7,9 @@ public class Main {
         Report.ReportBuilder reportTest = Report.builder().body("Sample text").header("Header").footer("footer");
         Report.ReportBuilder reportTestTwo = Report.builder().header("Header").footer("footer");
 
-        System.out.println(reportTest.toString());
+        System.out.println(reportTest.hashCode());
+        System.out.println(reportTest.hashCode() == reportTest.hashCode());
+        System.out.println(reportTestTwo.hashCode() == reportTest.hashCode());
 
 
         Pow powTest;
