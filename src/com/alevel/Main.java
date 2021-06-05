@@ -5,8 +5,11 @@ public class Main {
     public static void main(String[] args) {
 
         Report.ReportBuilder reportTest = Report.builder().body("Sample text").header("Header").footer("footer");
+        Report.ReportBuilder reportTestTwo = Report.builder().header("Header").footer("footer");
 
-        System.out.println(reportTest.toString());
+        System.out.println(reportTest.hashCode());
+        System.out.println(reportTest.hashCode() == reportTest.hashCode());
+        System.out.println(reportTestTwo.hashCode() == reportTest.hashCode());
 
 
         Pow powTest;
@@ -22,6 +25,7 @@ public class Main {
 
         int resultTest = powTest.pow(numberTest, numberTest);
         System.out.println(resultTest);
+        System.out.println(reportTest.equals(reportTestTwo));
 
     }
 }
